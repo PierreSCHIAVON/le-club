@@ -1,5 +1,5 @@
 import { Joueur, CreateJoueurDTO, UpdateJoueurDTO } from '../models/Joueur';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 
 export class JoueurController {
     static async getAllJoueurs(): Promise<Joueur[]> {

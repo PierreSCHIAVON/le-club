@@ -1,4 +1,4 @@
-import { supabase } from '../../lib/supabase';
+import { supabase } from '@/app/lib/supabase';
 import { Joueur, CreateJoueurDTO, UpdateJoueurDTO } from '../models/Joueur';
 import {GetResult} from "@supabase/postgrest-js/src/select-query-parser/result";
 
