@@ -1,3 +1,6 @@
+import JoueurController from "@/app/api/controllers/joueurController";
+
+// First, export the Joueur interface
 export interface Joueur {
     id: string;
     pseudo: string;
@@ -11,5 +14,16 @@ export interface Joueur {
     updated_at: string;
 }
 
+// Export the DTOs as named exports
 export type CreateJoueurDTO = Omit<Joueur, 'id' | 'created_at' | 'updated_at'>;
 export type UpdateJoueurDTO = Partial<CreateJoueurDTO>;
+
+// Create a model object to export as default
+const JoueurModel = {
+    Joueur: {} as Joueur,
+    CreateJoueurDTO: {} as CreateJoueurDTO,
+    UpdateJoueurDTO: {} as UpdateJoueurDTO,
+};
+
+// Export the model object as default
+export default JoueurModel;

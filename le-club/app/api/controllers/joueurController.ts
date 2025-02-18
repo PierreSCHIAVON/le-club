@@ -77,3 +77,4 @@ export class JoueurController {
         }
     }
 }
+export default JoueurController;

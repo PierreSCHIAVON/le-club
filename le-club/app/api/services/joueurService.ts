@@ -24,3 +24,13 @@ export const deleteJoueur = async (id: string): Promise<void> => {
     const { error } = await supabase.from('joueurs').delete().eq('id', id);
     if (error) throw error;
 };
+
+// Create a default export object that includes all functions
+const joueurService = {
+    getJoueurs,
+    createJoueur,
+    updateJoueur,
+    deleteJoueur
+};
+
+export default joueurService;
