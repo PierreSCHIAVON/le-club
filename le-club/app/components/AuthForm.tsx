@@ -1,49 +1,39 @@
-import React, { useState } from 'react'
-import { Alert, StyleSheet, View, AppState } from 'react-native'
-import { supabase } from '@/app/lib/supabase'
-import { Button, Input } from '@rneui/themed'
+import React, { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import { supabase } from '@/app/lib/supabase';
+import { Button, Input } from '@rneui/themed';
 
-// Tells Supabase Auth to continuously refresh the session automatically if
-// the app is in the foreground. When this is added, you will continue to receive
-// `onAuthStateChange` events with the `TOKEN_REFRESHED` or `SIGNED_OUT` event
-// if the user's session is terminated. This should only be registered once.
-AppState.addEventListener('change', (state) => {
-    if (state === 'active') {
-        supabase.auth.startAutoRefresh()
-    } else {
-        supabase.auth.stopAutoRefresh()
-    }
-})
-
-export default function Auth() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
+export default function AuthForm() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     async function signInWithEmail() {
-        setLoading(true)
+        setLoading(true);
         const { error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password,
-        })
+        });
 
-        if (error) Alert.alert(error.message)
-        setLoading(false)
+        if (error) Alert.alert(error.message);
+        setLoading(false);
+        // No navigation needed here - AppNavigator will handle this automatically
+        // when the auth state changes
     }
 
     async function signUpWithEmail() {
-        setLoading(true)
+        setLoading(true);
         const {
             data: { session },
             error,
         } = await supabase.auth.signUp({
             email: email,
             password: password,
-        })
+        });
 
-        if (error) Alert.alert(error.message)
-        if (!session) Alert.alert('Merci de vérifier votre boite mail pour votre email de verification!')
-        setLoading(false)
+        if (error) Alert.alert(error.message);
+        if (!session) Alert.alert('Merci de vérifier votre boite mail pour votre email de verification!');
+        setLoading(false);
     }
 
     return (
@@ -76,7 +66,7 @@ export default function Auth() {
                 <Button title="S'inscrire" disabled={loading} onPress={() => signUpWithEmail()} />
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -92,4 +82,4 @@ const styles = StyleSheet.create({
     mt20: {
         marginTop: 20,
     },
-})
+});
