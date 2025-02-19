@@ -34,10 +34,10 @@ export default function Index() {
                         let iconName;
                         if (route.name === 'Home') {
                             iconName = focused ? 'home' : 'home-outline';
+                        } else if (route.name === 'Evenement') {
+                            iconName = focused ? 'add-circle' : 'add-circle-outline';
                         } else if (route.name === 'Profile') {
                             iconName = focused ? 'person' : 'person-outline';
-                        } else if (route.name === 'Evenement') {
-                            iconName = focused ? 'calendar' : 'calendar-outline';
                         }
                         return <Ionicons name={iconName as any} size={size} color={color} />;
                     },
@@ -47,13 +47,14 @@ export default function Index() {
             >
                 <Tab.Screen name="Home" component={HomeScreen} />
                 <Tab.Screen
-                    name="Profile"
-                    component={() => <Account session={session} />}
-                />
-                <Tab.Screen
                     name="Evenement"
                     component={EvenementScreen}
                 />
+                <Tab.Screen
+                    name="Profile"
+                    component={() => <Account session={session} />}
+                />
+
             </Tab.Navigator>
         ) : (
             <Auth />
