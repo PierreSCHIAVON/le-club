@@ -1,6 +1,4 @@
 import JoueurController from "@/app/api/controllers/joueurController";
-
-// First, export the Joueur interface
 export interface Joueur {
     id: string;
     pseudo: string;
@@ -8,8 +6,6 @@ export interface Joueur {
     prenom: string;
     age: number;
     niveau: 'Débutant' | 'Intermédiaire' | 'Avancé' | 'Expert';
-    email: string;
-    avatar_url?: string;
     created_at: string;
     updated_at: string;
 }
@@ -24,6 +20,4 @@ const JoueurModel = {
     CreateJoueurDTO: {} as CreateJoueurDTO,
     UpdateJoueurDTO: {} as UpdateJoueurDTO,
 };
-
-// Export the model object as default
 export default JoueurModel;
